@@ -37,11 +37,11 @@ public class GameController {
                 {0, 1, 0, 2, 1},
                 {1, 0, 1, 0, 2}};
         actionMatrix = new String[][]{
-                {"Ties", "Cuts", "Crushes", "Decapitates", "Smashes"},
-                {"Cuts", "Ties", "Covers", "Eats", "Disproves"},
-                {"Crushes","Covers","Ties","Crushes","Vaporizes"},
-                {"Decapitates","Eats","Crushes","Ties","Poisons"},
-                {"Smashes","Disproves","Vaporizes","Poisons","Ties"}};
+                {"ties", "cuts", "crushes", "decapitates", "smashes"},
+                {"cuts", "ties", "covers", "eats", "disproves"},
+                {"crushes","covers","ties","crushes","vaporizes"},
+                {"decapitates","eats","crushes","ties","poisons"},
+                {"smashes","disproves","vaporizes","poisons","ties"}};
         handToInt = new HashMap<String, Integer>() {{
             put("Scissors", 0);
             put("Paper", 1);

@@ -10,9 +10,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent game = FXMLLoader.load(getClass().getResource("sample/game.fxml"));
+        FXMLLoader gamePaneLoader = new FXMLLoader(getClass().getResource("game.fxml"));
+        Parent gamePane = gamePaneLoader.load();
+        Scene gameScene = new Scene(gamePane);
+        FXMLLoader replayPageLoader = new FXMLLoader(getClass().getResource("replay.fxml"));
+        Parent replayPane = replayPageLoader.load();
+        Scene replayScene = new Scene(replayPane);
+
+        GameController gameController = (GameController) gamePaneLoader.getController();
+        gameController.setSecondScene(replayScene);
+        ReplayController replayController = (ReplayController) replayPageLoader.getController();
+        replayController.setFirstScene(gameScene);
+
         primaryStage.setTitle("Arnold Clark Big Bang Game");
-        primaryStage.setScene(new Scene(game));
+        primaryStage.setScene(gameScene);
         primaryStage.show();
     }
 

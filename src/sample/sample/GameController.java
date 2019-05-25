@@ -27,6 +27,7 @@ public class GameController {
     private HashMap handToInt;
     private int[][] winMatrix;
     private String[][] actionMatrix;
+    private Scene secondScene;
 
     public GameController() {
         winMatrix = new int[][]{
@@ -48,6 +49,14 @@ public class GameController {
             put("Lizard", 3);
             put("Spock", 4);
         }};
+    }
+    public void setSecondScene(Scene scene) {
+        secondScene = scene;
+    }
+
+    public void openSecondScene(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(secondScene);
     }
 
     @FXML

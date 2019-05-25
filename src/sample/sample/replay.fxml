@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="575" prefWidth="650" fx:controller="sample.ReplayController" xmlns:fx="http://javafx.com/fxml"
+            style="-fx-background-color: darkgray">
+
+</AnchorPane>

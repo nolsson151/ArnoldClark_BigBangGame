@@ -1,45 +1,46 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 
-public class Controller {
+public class GameController {
     @FXML
-    private Text title;
-    @FXML
-    private Text playerHand;
-    @FXML
-    private Text oppHand;
-    @FXML
-    private Text result;
+    private Text title, playerHand,oppHand,result,wins,loses,announcment;
     @FXML
     private ImageView playerImage;
     @FXML
     private ImageView opponentImage;
+    private int winsCount = 0;
+    private  int losesCount = 0;
+
     private HashMap handToInt;
     private int[][] winMatrix;
+    private String[][] actionMatrix;
 
-    public Controller() {
+    public GameController() {
         winMatrix = new int[][]{
                 {2, 1, 0, 1, 0},
                 {0, 2, 1, 0, 1},
                 {1, 0, 2, 1, 0},
                 {0, 1, 0, 2, 1},
                 {1, 0, 1, 0, 2}};
+        actionMatrix = new String[][]{
+                {"Ties", "Cuts", "Crushes", "Decapitates", "Smashes"},
+                {"Cuts", "Ties", "Covers", "Eats", "Disproves"},
+                {"Crushes","Covers","Ties","Crushes","Vaporizes"},
+                {"Decapitates","Eats","Crushes","Ties","Poisons"},
+                {"Smashes","Disproves","Vaporizes","Poisons","Ties"}};
         handToInt = new HashMap<String, Integer>() {{
             put("Scissors", 0);
             put("Paper", 1);
@@ -54,7 +55,8 @@ public class Controller {
         String value = ((Button) event.getSource()).getText();
         playerHand.setText(value);
         decideWinner(value);
-
+        wins.setText("Wins: "+winsCount);
+        loses.setText("Loses: "+losesCount);
     }
 
     public void decideWinner(String s) {
@@ -65,11 +67,16 @@ public class Controller {
         String opponentChoice = (String) getKeyFromValue(handToInt, rand);
         oppHand.setText(opponentChoice);
         if (decision > 0 && decision != 2) {
-            result.setText("You're a winner!");
+            announcment.setText(s +" "+actionMatrix[playerChoice][rand]+ " "+opponentChoice);
+            result.setText("Winner!");
+            winsCount++;
         } else if (decision == 2) {
-            result.setText("It's a draw!");
+            result.setText("Draw!");
+            announcment.setText(s +" "+actionMatrix[playerChoice][rand]+ " "+opponentChoice);
         } else {
-            result.setText("You lose, better luck next time!");
+            result.setText("Loser!");
+            announcment.setText( opponentChoice+" "+actionMatrix[playerChoice][rand]+ " "+s);
+            losesCount++;
         }
 
     }

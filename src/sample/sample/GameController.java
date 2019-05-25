@@ -2,12 +2,8 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,11 +12,7 @@ import java.util.Random;
 
 public class GameController {
     @FXML
-    private Text title, playerHand,oppHand,result,wins,loses,announcment;
-    @FXML
-    private ImageView playerImage;
-    @FXML
-    private ImageView opponentImage;
+    private Text playerHand,oppHand,result,wins,loses,announcment;
     private int winsCount = 0;
     private  int losesCount = 0;
 
